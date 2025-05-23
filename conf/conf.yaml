@@ -1,0 +1,13 @@
+database:
+  name: sky_take_out
+  host: localhost
+  port: 3306
+  user: root
+  password: 123456
+
+jwt:
+  key: sky_take_out
+
+server:
+  host: localhost
+  port: 8080

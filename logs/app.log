@@ -1,0 +1,18 @@
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T22:59:48.426+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-23T22:59:58.783+0800","caller":"repository/employeeRepo.go:33","msg":"登录查询错误","error":"Error 1054 (42S22): Unknown column '$1' in 'where clause'"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-23T23:00:00.400+0800","caller":"repository/employeeRepo.go:33","msg":"登录查询错误","error":"Error 1054 (42S22): Unknown column '$1' in 'where clause'"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-23T23:00:03.190+0800","caller":"repository/employeeRepo.go:33","msg":"登录查询错误","error":"Error 1054 (42S22): Unknown column '$1' in 'where clause'"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-23T23:00:15.500+0800","caller":"repository/employeeRepo.go:33","msg":"登录查询错误","error":"Error 1054 (42S22): Unknown column '$1' in 'where clause'"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:03:23.522+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:12:14.859+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[33mwarn\u001b[0m","time":"2025-05-23T23:12:25.513+0800","caller":"repository/employeeRepo.go:30","msg":"用户名或密码错误"}
+{"level":"\u001b[33mwarn\u001b[0m","time":"2025-05-23T23:12:33.567+0800","caller":"repository/employeeRepo.go:30","msg":"用户名或密码错误"}
+{"level":"\u001b[33mwarn\u001b[0m","time":"2025-05-23T23:12:41.131+0800","caller":"repository/employeeRepo.go:30","msg":"用户名或密码错误"}
+{"level":"\u001b[33mwarn\u001b[0m","time":"2025-05-23T23:13:38.804+0800","caller":"repository/employeeRepo.go:30","msg":"用户名或密码错误"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:14:21.167+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[33mwarn\u001b[0m","time":"2025-05-23T23:14:23.778+0800","caller":"repository/employeeRepo.go:30","msg":"用户名或密码错误"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:19:37.959+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[33mwarn\u001b[0m","time":"2025-05-23T23:19:51.588+0800","caller":"repository/employeeRepo.go:30","msg":"用户名或密码错误"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:20:44.566+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:24:37.856+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T01:00:41.528+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
