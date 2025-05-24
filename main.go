@@ -6,7 +6,7 @@ import (
 	"sky_take_out/controller"
 	"sky_take_out/database"
 	"sky_take_out/repository"
-	"sky_take_out/service"
+	service "sky_take_out/service/employeeService"
 	"sky_take_out/utils"
 
 	"github.com/spf13/viper"
@@ -26,6 +26,8 @@ func main() {
 	employeeController := controller.NewEmployeeController(employeeService)
 
 	http.HandleFunc("/admin/employee/login", employeeController.Login)
+	http.HandleFunc("/admin/employee/logout", employeeController.Logout)
+	http.HandleFunc("/admin/employee/save", employeeController.Save)
 
 	host := viper.GetString("server.host")
 	port := viper.GetString("server.port")

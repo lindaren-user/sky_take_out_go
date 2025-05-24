@@ -16,3 +16,12 @@
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:20:44.566+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-23T23:24:37.856+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T01:00:41.528+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T09:24:31.497+0800","caller":"sky_take_out/main.go:33","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-24T09:24:39.453+0800","caller":"controller/employeeController.go:29","msg":"解析请求体失败","error":"EOF"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T11:59:13.650+0800","caller":"sky_take_out/main.go:34","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T11:59:56.146+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T12:00:30.175+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-24T12:00:42.536+0800","caller":"repository/employeeRepo.go:64","msg":"插入员工失败","error":"Error 1054 (42S22): Unknown column 'idName' in 'field list'"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T12:02:15.130+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-24T12:02:18.033+0800","caller":"repository/employeeRepo.go:64","msg":"插入员工失败","error":"Error 1054 (42S22): Unknown column 'id_name' in 'field list'"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T12:03:07.020+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
