@@ -54,3 +54,10 @@
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T16:16:56.661+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T17:46:49.179+0800","caller":"sky_take_out/main.go:40","msg":"服务开启...","addr":"localhost:8080"}
 {"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T17:47:35.424+0800","caller":"repository/employeeRepo.go:160","msg":"查询失败","error":"sql: no rows in result set"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T20:12:33.391+0800","caller":"sky_take_out/main.go:40","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T21:31:17.995+0800","caller":"sky_take_out/main.go:28","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T21:31:52.248+0800","caller":"sky_take_out/main.go:28","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T21:32:40.290+0800","caller":"repository/categoryRepo.go:30","msg":"更新失败","error":"Error 1136 (21S01): Column count doesn't match value count at row 1"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T21:36:20.702+0800","caller":"sky_take_out/main.go:28","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T21:50:41.529+0800","caller":"sky_take_out/main.go:28","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T23:25:41.334+0800","caller":"sky_take_out/main.go:28","msg":"服务开启...","addr":"localhost:8080"}

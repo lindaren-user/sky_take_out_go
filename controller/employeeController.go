@@ -1,10 +1,13 @@
 package controller
 
 import (
+	"database/sql"
 	"encoding/json"
 	"net/http"
+	"sky_take_out/database"
 	"sky_take_out/dto"
 	"sky_take_out/model"
+	"sky_take_out/repository"
 	"sky_take_out/result"
 	service "sky_take_out/service/employeeService"
 	"sky_take_out/utils"
@@ -13,6 +16,21 @@ import (
 
 	"go.uber.org/zap"
 )
+
+func EmployeeMakeHandler(db *sql.DB) {
+	repo := repository.NewEmployeeRepo(database.GetDB())
+	employeeService := service.NewEmployeeService(repo)
+	employeeController := NewEmployeeController(employeeService)
+
+	http.HandleFunc("/admin/employee/login", employeeController.Login)
+	http.HandleFunc("/admin/employee/logout", employeeController.Logout)
+	http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Save)))
+	http.Handle("/admin/employee/page", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Page)))
+	http.Handle("/admin/employee/status/", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.StartAndStop)))
+	http.Handle("/admin/employee/", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.GetInfo)))
+	// http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.UpdateInfo))) // go 原生不允许相同的路由，gin 可以
+	http.Handle("/admin/employee/update", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.UpdateInfo)))
+}
 
 type EmployeeController struct {
 	service *service.EmployeeService
@@ -147,7 +165,7 @@ func (e *EmployeeController) StartAndStop(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	if err = e.service.StartAndStop(id, status); err != nil {
+	if err = e.service.StartAndStop(r.Context(), id, status); err != nil {
 		result.Error(w, "启用/禁用出错")
 		return
 	}

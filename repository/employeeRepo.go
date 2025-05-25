@@ -17,7 +17,7 @@ type EmployeeRepo interface {
 
 	GetUserByPage(name string, page int, pageSize int) (total int, employees []*model.Employee, err error)
 
-	StartAndStop(employeeId int, status int) error
+	StartAndStop(statusDTO *dto.EmployeeStatusDTO) error
 
 	GetInfo(id int) (*model.Employee, error)
 
@@ -127,10 +127,10 @@ func (e *employeeRepoImpl) GetUserByPage(name string, page int, pageSize int) (t
 	return
 }
 
-func (e *employeeRepoImpl) StartAndStop(employeeId int, status int) error {
-	update := "update employee set status = ? where id = ?"
+func (e *employeeRepoImpl) StartAndStop(statusDTO *dto.EmployeeStatusDTO) error {
+	update := "update employee set status = ? and update_time = ? and update_user = ? where id = ?"
 
-	if _, err := e.conn.Exec(update, status, employeeId); err != nil {
+	if _, err := e.conn.Exec(update, statusDTO.Status, statusDTO.UpdateTime, statusDTO.UpdateUser, statusDTO.Id); err != nil {
 		utils.Logger.Error("更新状态失败", zap.Error(err))
 		return err
 	}

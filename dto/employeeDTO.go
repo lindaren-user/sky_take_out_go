@@ -31,3 +31,10 @@ type EmployeeUpdateReqDTO struct {
 	UpdateTime time.Time `json:"update_time"`
 	UpdateUser int       `json:"update_user"`
 }
+
+type EmployeeStatusDTO struct {
+	Id         int       `json:"id"`
+	Status     int       `json:"status"`
+	UpdateTime time.Time `json:"update_time"`
+	UpdateUser int       `json:"update_user"`
+}

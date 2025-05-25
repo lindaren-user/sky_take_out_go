@@ -56,8 +56,21 @@ func (e *EmployeeService) Page(name string, page int, pageSize int) (*dto.Employ
 	return employeePageRespDtO, nil
 }
 
-func (e *EmployeeService) StartAndStop(employeeId int, status int) error {
-	return e.repo.StartAndStop(employeeId, status)
+func (e *EmployeeService) StartAndStop(ctx context.Context, id int, status int) error {
+	adminID, ok := utils.GetAdminID(ctx)
+	if !ok {
+		utils.Logger.Error("获取 admin_id 错误")
+		return fmt.Errorf("获取 admin_id 错误")
+	}
+
+	statusDTO := &dto.EmployeeStatusDTO{}
+
+	statusDTO.Status = status
+	statusDTO.Id = id
+	statusDTO.UpdateTime = time.Now() // TODO： update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+	statusDTO.UpdateUser = adminID
+
+	return e.repo.StartAndStop(statusDTO)
 }
 
 func (e *EmployeeService) GetInfo(id int) (*model.Employee, error) {

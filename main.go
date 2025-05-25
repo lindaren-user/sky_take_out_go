@@ -5,8 +5,6 @@ import (
 	"net/http"
 	"sky_take_out/controller"
 	"sky_take_out/database"
-	"sky_take_out/repository"
-	service "sky_take_out/service/employeeService"
 	"sky_take_out/utils"
 
 	"github.com/spf13/viper"
@@ -21,18 +19,8 @@ func main() {
 	database.InitDB()
 	defer database.CloseDB()
 
-	repo := repository.NewEmployeeRepo(database.GetDB())
-	employeeService := service.NewEmployeeService(repo)
-	employeeController := controller.NewEmployeeController(employeeService)
-
-	http.HandleFunc("/admin/employee/login", employeeController.Login)
-	http.HandleFunc("/admin/employee/logout", employeeController.Logout)
-	http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Save)))
-	http.Handle("/admin/employee/page", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Page)))
-	http.Handle("/admin/employee/status/", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.StartAndStop)))
-	http.Handle("/admin/employee/", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.GetInfo)))
-	// http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.UpdateInfo))) // go 原生不允许相同的路由，gin 可以
-	http.Handle("/admin/employee/update", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.UpdateInfo)))
+	controller.EmployeeMakeHandler(database.GetDB())
+	controller.CategoryMakeHandler(database.GetDB())
 
 	host := viper.GetString("server.host")
 	port := viper.GetString("server.port")
