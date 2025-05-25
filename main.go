@@ -29,6 +29,10 @@ func main() {
 	http.HandleFunc("/admin/employee/logout", employeeController.Logout)
 	http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Save)))
 	http.Handle("/admin/employee/page", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Page)))
+	http.Handle("/admin/employee/status/", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.StartAndStop)))
+	http.Handle("/admin/employee/", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.GetInfo)))
+	// http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.UpdateInfo))) // go 原生不允许相同的路由，gin 可以
+	http.Handle("/admin/employee/update", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.UpdateInfo)))
 
 	host := viper.GetString("server.host")
 	port := viper.GetString("server.port")

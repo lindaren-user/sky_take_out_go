@@ -4,6 +4,7 @@ import (
 	"context"
 )
 
+// TODO：原理是什么？？？
 // 定义非导出 key 类型，防止外部冲突
 type ctxKey string
 

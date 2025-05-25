@@ -16,6 +16,12 @@ type EmployeeRepo interface {
 	Insert(employee *model.Employee) error
 
 	GetUserByPage(name string, page int, pageSize int) (total int, employees []*model.Employee, err error)
+
+	StartAndStop(employeeId int, status int) error
+
+	GetInfo(id int) (*model.Employee, error)
+
+	UpdateInfo(employeeUpdateReqDTO *dto.EmployeeUpdateReqDTO) error
 }
 
 type employeeRepoImpl struct {
@@ -119,4 +125,73 @@ func (e *employeeRepoImpl) GetUserByPage(name string, page int, pageSize int) (t
 	}
 
 	return
+}
+
+func (e *employeeRepoImpl) StartAndStop(employeeId int, status int) error {
+	update := "update employee set status = ? where id = ?"
+
+	if _, err := e.conn.Exec(update, status, employeeId); err != nil {
+		utils.Logger.Error("更新状态失败", zap.Error(err))
+		return err
+	}
+
+	return nil
+}
+
+func (e *employeeRepoImpl) GetInfo(id int) (*model.Employee, error) {
+	query := "select id, name, username, password, phone, sex, id_number, status, create_time, update_time, create_user, update_user from employee where id = ?"
+
+	employee := &model.Employee{}
+	err := e.conn.QueryRow(query, id).Scan(
+		&employee.Id,
+		&employee.Name,
+		&employee.Username,
+		&employee.Password,
+		&employee.Phone,
+		&employee.Sex,
+		&employee.IdNumber,
+		&employee.Status,
+		&employee.CreateTime,
+		&employee.UpdateTime,
+		&employee.CreateUser,
+		&employee.UpdateUser,
+	)
+	if err != nil {
+		utils.Logger.Error("查询失败", zap.Error(err))
+		return nil, err
+	}
+
+	return employee, nil
+}
+
+func (e *employeeRepoImpl) UpdateInfo(employeeUpdateReqDTO *dto.EmployeeUpdateReqDTO) error {
+	update := `
+        update employee set 
+            name = ?, 
+            username = ?, 
+            phone = ?, 
+            sex = ?, 
+            id_number = ?, 
+            update_time = ?, 
+            update_user = ?
+        where id = ?
+    `
+
+	_, err := e.conn.Exec(
+		update,
+		employeeUpdateReqDTO.Name,
+		employeeUpdateReqDTO.Username,
+		employeeUpdateReqDTO.Phone,
+		employeeUpdateReqDTO.Sex,
+		employeeUpdateReqDTO.IdNumber,
+		employeeUpdateReqDTO.UpdateTime,
+		employeeUpdateReqDTO.UpdateUser,
+		employeeUpdateReqDTO.Id,
+	)
+	if err != nil {
+		utils.Logger.Error("更新失败", zap.Error(err))
+		return err
+	}
+
+	return nil
 }

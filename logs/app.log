@@ -46,3 +46,11 @@
 {"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T15:16:43.255+0800","caller":"repository/employeeRepo.go:110","msg":"读取行失败","error":"sql: Scan error on column index 8, name \"create_time\": unsupported Scan, storing driver.Value type []uint8 into type *time.Time"}
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:24:10.651+0800","caller":"sky_take_out/main.go:36","msg":"服务开启...","addr":"localhost:8080"}
 {"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T15:25:02.172+0800","caller":"utils/interceptor.go:24","msg":"JWT 校验失败","error":"token has invalid claims: token is expired"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:54:06.014+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:55:16.154+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:57:56.527+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T15:58:23.109+0800","caller":"repository/employeeRepo.go:130","msg":"更新状态失败","error":"Error 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table employee set status = ? where id = ?' at line 1"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:59:24.489+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T16:16:56.661+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T17:46:49.179+0800","caller":"sky_take_out/main.go:40","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T17:47:35.424+0800","caller":"repository/employeeRepo.go:160","msg":"查询失败","error":"sql: no rows in result set"}

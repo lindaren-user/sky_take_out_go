@@ -9,6 +9,7 @@ import (
 	service "sky_take_out/service/employeeService"
 	"sky_take_out/utils"
 	"strconv"
+	"strings"
 
 	"go.uber.org/zap"
 )
@@ -42,7 +43,7 @@ func (e *EmployeeController) Login(w http.ResponseWriter, r *http.Request) {
 
 	token, err := utils.GenerateJWT(employee.Id)
 	if err != nil {
-		result.Error(w, "token生成失败")
+		result.Error(w, "token 生成失败")
 		return
 	}
 
@@ -94,25 +95,112 @@ func (e *EmployeeController) Page(w http.ResponseWriter, r *http.Request) {
 	}
 
 	name := r.URL.Query().Get("name")
-	page := r.URL.Query().Get("page")
-	pageSize := r.URL.Query().Get("pageSize")
+	pageStr := r.URL.Query().Get("page")
+	pageSizeStr := r.URL.Query().Get("pageSize")
 
-	pageInt, err := strconv.Atoi(page)
+	// TODO：怎么处理这些参数才是最优解
+	page, err := strconv.Atoi(pageStr)
 	if err != nil {
 		result.Error(w, "page 参数错误")
 		return
 	}
-	pageSizeInt, err := strconv.Atoi(pageSize)
+	pageSize, err := strconv.Atoi(pageSizeStr)
 	if err != nil {
 		result.Error(w, "pageSize 参数错误")
 		return
 	}
 
-	employeePageRespDtO, err := e.service.Page(name, pageInt, pageSizeInt)
+	employeePageRespDtO, err := e.service.Page(name, page, pageSize)
 	if err != nil {
 		result.Error(w, "查询失败")
 		return
 	}
 
 	result.Success(w, "查询成功", employeePageRespDtO)
+}
+
+func (e *EmployeeController) StartAndStop(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		result.Error(w, "请求方式错误")
+		return
+	}
+
+	// TODO：怎么优化
+	path := r.URL.Path
+	parts := strings.Split(strings.Trim(path, "/"), "/")
+	if len(parts) < 4 { // /admin/employee/status/{status}
+		result.Error(w, "路径错误")
+		return
+	}
+	statusStr := parts[len(parts)-1]
+
+	status, err := strconv.Atoi(statusStr)
+	if err != nil {
+		result.Error(w, "status 参数错误")
+		return
+	}
+
+	idStr := r.URL.Query().Get("id")
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		result.Error(w, "id 参数错误")
+		return
+	}
+
+	if err = e.service.StartAndStop(id, status); err != nil {
+		result.Error(w, "启用/禁用出错")
+		return
+	}
+
+	result.Success(w, "执行成功", nil)
+}
+
+func (e *EmployeeController) GetInfo(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		result.Error(w, "请求方式错误")
+		return
+	}
+
+	// TODO：怎么优化
+	path := r.URL.Path
+	parts := strings.Split(strings.Trim(path, "/"), "/")
+	if len(parts) < 3 { // /admin/employee/{id}
+		result.Error(w, "路径错误")
+		return
+	}
+	idStr := parts[len(parts)-1]
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		result.Error(w, "id 参数错误")
+		return
+	}
+
+	employee, err := e.service.GetInfo(id)
+	if err != nil {
+		result.Error(w, "查询失败")
+		return
+	}
+
+	result.Success(w, "查询成功", employee)
+}
+
+func (e *EmployeeController) UpdateInfo(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPut {
+		result.Error(w, "请求方式错误")
+		return
+	}
+
+	var employeeUpdateReqDTO *dto.EmployeeUpdateReqDTO
+	if err := json.NewDecoder(r.Body).Decode(&employeeUpdateReqDTO); err != nil {
+		result.Error(w, "请求体解析失败")
+		return
+	}
+
+	if err := e.service.UpdateInfo(r.Context(), employeeUpdateReqDTO); err != nil {
+		result.Error(w, "更新失败")
+		return
+	}
+
+	result.Success(w, "更新成功", nil)
 }

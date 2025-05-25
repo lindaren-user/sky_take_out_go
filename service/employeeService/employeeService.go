@@ -19,6 +19,7 @@ func NewEmployeeService(repo repository.EmployeeRepo) *EmployeeService {
 	return &EmployeeService{repo: repo}
 }
 
+// TODO：禁用的账号无法登录，密码加密
 func (e *EmployeeService) Login(username string, password string) (*dto.EmployeeLoginDTO, error) {
 	return e.repo.GetUserByLogin(username, password)
 }
@@ -53,4 +54,25 @@ func (e *EmployeeService) Page(name string, page int, pageSize int) (*dto.Employ
 		Records: employees,
 	}
 	return employeePageRespDtO, nil
+}
+
+func (e *EmployeeService) StartAndStop(employeeId int, status int) error {
+	return e.repo.StartAndStop(employeeId, status)
+}
+
+func (e *EmployeeService) GetInfo(id int) (*model.Employee, error) {
+	return e.repo.GetInfo(id)
+}
+
+func (e *EmployeeService) UpdateInfo(ctx context.Context, employeeUpdateReqDTO *dto.EmployeeUpdateReqDTO) error {
+	adminID, ok := utils.GetAdminID(ctx)
+	if !ok {
+		utils.Logger.Error("获取 admin_id 错误")
+		return fmt.Errorf("获取 admin_id 错误")
+	}
+
+	employeeUpdateReqDTO.UpdateTime = time.Now()
+	employeeUpdateReqDTO.UpdateUser = adminID
+
+	return e.repo.UpdateInfo(employeeUpdateReqDTO)
 }

@@ -1,6 +1,9 @@
 package dto
 
-import "sky_take_out/model"
+import (
+	"sky_take_out/model"
+	"time"
+)
 
 type EmployeeLoginDTO struct {
 	Id       int    `json:"id"`
@@ -11,7 +14,7 @@ type EmployeeLoginDTO struct {
 
 type EmployeeSaveReqDTO struct {
 	Id       int    `json:"id"`
-	IdName   string `json:"idName"`
+	IdNumber string `json:"id_number"`
 	Name     string `json:"name"`
 	Phone    string `json:"phone"`
 	Sex      string `json:"sex"`
@@ -20,5 +23,11 @@ type EmployeeSaveReqDTO struct {
 
 type EmployeePageRespDTO struct {
 	Total   int               `json:"total"`
-	Records []*model.Employee `json:"records"` // []model.Employee 的区别
+	Records []*model.Employee `json:"records"` // TODO：[]model.Employee 的区别
+}
+
+type EmployeeUpdateReqDTO struct {
+	EmployeeSaveReqDTO
+	UpdateTime time.Time `json:"update_time"`
+	UpdateUser int       `json:"update_user"`
 }
