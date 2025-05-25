@@ -8,6 +8,7 @@ import (
 	"sky_take_out/result"
 	service "sky_take_out/service/employeeService"
 	"sky_take_out/utils"
+	"strconv"
 
 	"go.uber.org/zap"
 )
@@ -79,9 +80,39 @@ func (e *EmployeeController) Save(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := e.service.Save(employee); err != nil {
+	if err := e.service.Save(r.Context(), employee); err != nil {
 		result.Error(w, "新增失败")
 		return
 	}
 	result.Success(w, "新增成功", nil)
+}
+
+func (e *EmployeeController) Page(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		result.Error(w, "请求方式错误")
+		return
+	}
+
+	name := r.URL.Query().Get("name")
+	page := r.URL.Query().Get("page")
+	pageSize := r.URL.Query().Get("pageSize")
+
+	pageInt, err := strconv.Atoi(page)
+	if err != nil {
+		result.Error(w, "page 参数错误")
+		return
+	}
+	pageSizeInt, err := strconv.Atoi(pageSize)
+	if err != nil {
+		result.Error(w, "pageSize 参数错误")
+		return
+	}
+
+	employeePageRespDtO, err := e.service.Page(name, pageInt, pageSizeInt)
+	if err != nil {
+		result.Error(w, "查询失败")
+		return
+	}
+
+	result.Success(w, "查询成功", employeePageRespDtO)
 }

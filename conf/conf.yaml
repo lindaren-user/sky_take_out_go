@@ -6,7 +6,9 @@ database:
   password: 123456
 
 jwt:
-  key: sky_take_out
+  admin:
+    key: sky_take_out
+    name: token
 
 server:
   host: localhost

@@ -18,7 +18,7 @@ func InitDB() {
 	password := viper.GetString("database.password")
 	name := viper.GetString("database.name")
 
-	source := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4", user, password, host, port, name)
+	source := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=true", user, password, host, port, name) // 某些 MySQL 驱动参数（如 parseTime=true）必须加上，否则 DATETIME/TIMESTAMP 也会被当作字符串处理，Scan 时就会报错。
 
 	var err error
 	db, err = sql.Open("mysql", source)

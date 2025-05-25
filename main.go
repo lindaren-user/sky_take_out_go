@@ -27,7 +27,8 @@ func main() {
 
 	http.HandleFunc("/admin/employee/login", employeeController.Login)
 	http.HandleFunc("/admin/employee/logout", employeeController.Logout)
-	http.HandleFunc("/admin/employee/save", employeeController.Save)
+	http.Handle("/admin/employee", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Save)))
+	http.Handle("/admin/employee/page", utils.JWTAdminMiddleware(http.HandlerFunc(employeeController.Page)))
 
 	host := viper.GetString("server.host")
 	port := viper.GetString("server.port")

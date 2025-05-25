@@ -7,17 +7,17 @@ import (
 	"github.com/spf13/viper"
 )
 
-var jwtKey = []byte(viper.GetString("jwt.key"))
+var jwtKey = []byte(viper.GetString("jwt.admin.key"))
 
 type Claims struct {
-	Id int `json:"user_id"`
+	UserID int `json:"user_id"`
 	jwt.RegisteredClaims
 }
 
 // 生成 Token
-func GenerateJWT(id int) (string, error) {
+func GenerateJWT(userId int) (string, error) {
 	claims := Claims{
-		Id: id,
+		UserID: userId, // 注意 claims，这里面自己有ID
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(2 * time.Hour)), // 2小时过期
 			IssuedAt:  jwt.NewNumericDate(time.Now()),

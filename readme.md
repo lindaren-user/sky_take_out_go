@@ -1,3 +1,5 @@
+### go 与 springboot 的区别
+
 ### 数据库
 
 - 使用 database/sql 包，连接使用 sql.open
@@ -7,3 +9,5 @@
 - 使用 viper
 
 ### 常量
+
+### context 的类型安全

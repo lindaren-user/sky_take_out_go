@@ -14,6 +14,8 @@ type EmployeeRepo interface {
 	GetUserByLogin(username string, password string) (*dto.EmployeeLoginDTO, error)
 
 	Insert(employee *model.Employee) error
+
+	GetUserByPage(name string, page int, pageSize int) (total int, employees []*model.Employee, err error)
 }
 
 type employeeRepoImpl struct {
@@ -65,4 +67,56 @@ func (e *employeeRepoImpl) Insert(employee *model.Employee) error {
 		return err
 	}
 	return nil
+}
+
+func (e *employeeRepoImpl) GetUserByPage(name string, page int, pageSize int) (total int, employees []*model.Employee, err error) {
+	// 查询总数
+	countQuery := "select COUNT(*) from employee where name like concat('%', ?, '%')"
+	err = e.conn.QueryRow(countQuery, name).Scan(&total)
+	if err != nil {
+		utils.Logger.Error("数据库查询出错", zap.Error(err))
+		return
+	}
+
+	// 分页查询
+	offset := (page - 1) * pageSize
+	query := "select id, name, username, password, phone, sex, id_number, status, create_time, update_time, create_user, update_user from employee where name like concat('%', ?, '%') limit ? offset ?"
+	rows, err := e.conn.Query(query, name, pageSize, offset)
+	if err != nil {
+		utils.Logger.Error("数据库查询失败", zap.Error(err))
+		return
+	}
+	defer rows.Close()
+
+	employees = make([]*model.Employee, 0) // 序列化为 []，不会是 null
+
+	for rows.Next() {
+		emp := &model.Employee{}
+		err = rows.Scan(
+			&emp.Id,
+			&emp.Name,
+			&emp.Username,
+			&emp.Password,
+			&emp.Phone,
+			&emp.Sex,
+			&emp.IdNumber,
+			&emp.Status,
+			&emp.CreateTime,
+			&emp.UpdateTime,
+			&emp.CreateUser,
+			&emp.UpdateUser,
+		)
+		if err != nil {
+			utils.Logger.Error("读取行失败", zap.Error(err))
+			return
+		}
+		employees = append(employees, emp)
+	}
+
+	if err = rows.Err(); err != nil {
+		utils.Logger.Error("遍历行失败", zap.Error(err))
+		return
+	}
+
+	return
 }

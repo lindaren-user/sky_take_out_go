@@ -25,3 +25,24 @@
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T12:02:15.130+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
 {"level":"\u001b[31merror\u001b[0m","time":"2025-05-24T12:02:18.033+0800","caller":"repository/employeeRepo.go:64","msg":"插入员工失败","error":"Error 1054 (42S22): Unknown column 'id_name' in 'field list'"}
 {"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T12:03:07.020+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T13:34:30.637+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T15:42:15.129+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T15:52:08.925+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T15:55:48.413+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-24T15:56:07.873+0800","caller":"sky_take_out/main.go:37","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-24T15:56:10.847+0800","caller":"repository/employeeRepo.go:64","msg":"插入员工失败","error":"Error 1062 (23000): Duplicate entry '邱玲' for key 'employee.idx_username'"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:38:02.337+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:42:02.677+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:44:14.836+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T11:45:36.735+0800","caller":"utils/interceptor.go:25","msg":"JWT 校验失败","error":"token has invalid claims: token is expired"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:48:11.940+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:51:43.718+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:51:46.444+0800","caller":"controller/employeeController.go:47","msg":"登录成功","id":1}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T11:53:25.182+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:04:37.519+0800","caller":"sky_take_out/main.go:35","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:05:19.125+0800","caller":"sky_take_out/main.go:36","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:12:57.006+0800","caller":"sky_take_out/main.go:36","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T15:16:04.673+0800","caller":"repository/employeeRepo.go:110","msg":"读取行失败","error":"sql: Scan error on column index 8, name \"create_time\": unsupported Scan, storing driver.Value type []uint8 into type *time.Time"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T15:16:43.255+0800","caller":"repository/employeeRepo.go:110","msg":"读取行失败","error":"sql: Scan error on column index 8, name \"create_time\": unsupported Scan, storing driver.Value type []uint8 into type *time.Time"}
+{"level":"\u001b[34minfo\u001b[0m","time":"2025-05-25T15:24:10.651+0800","caller":"sky_take_out/main.go:36","msg":"服务开启...","addr":"localhost:8080"}
+{"level":"\u001b[31merror\u001b[0m","time":"2025-05-25T15:25:02.172+0800","caller":"utils/interceptor.go:24","msg":"JWT 校验失败","error":"token has invalid claims: token is expired"}
